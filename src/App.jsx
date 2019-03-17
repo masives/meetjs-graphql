@@ -21,12 +21,7 @@ const GET_BOOKS = gql`
 
 const BooksList = () => (
   <Query query={GET_BOOKS}>
-    {({
-      loading,
-      error,
-      data,
-      // refetch
-    }) => {
+    {({ loading, error, data, refetch }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
@@ -50,11 +45,11 @@ const BooksList = () => (
               </tr>
             ))}
 
-            {/* <tr>
+            <tr>
               <td>
                 <button onClick={() => refetch()}>refetch</button>
               </td>
-            </tr> */}
+            </tr>
           </tbody>
         </table>
       );

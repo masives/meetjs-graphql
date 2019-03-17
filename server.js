@@ -26,15 +26,15 @@ const typeDefs = gql`
     timeToRead: Int
   }
 
-  # input newBook {
-  #   title: String!
-  #   author: String!
-  #   pagesCount: Int!
-  # }
+  input newBook {
+    title: String!
+    author: String!
+    pagesCount: Int!
+  }
 
-  # type Mutation {
-  #   addBook(newBook: newBook!): Book!
-  # }
+  type Mutation {
+    addBook(newBook: newBook!): Book!
+  }
 
   type Query {
     books: [Book]
@@ -53,12 +53,12 @@ const resolvers = {
       return books.find(book => book.title === args.title);
     },
   },
-  // Mutation: {
-  //   addBook: (_, args) => {
-  //     books.push(args.newBook);
-  //     return args.newBook;
-  //   },
-  // },
+  Mutation: {
+    addBook: (_, args) => {
+      books.push(args.newBook);
+      return args.newBook;
+    },
+  },
   Book: {
     timeToRead: book => {
       return book.pagesCount * 2;
