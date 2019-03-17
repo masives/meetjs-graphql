@@ -22,6 +22,7 @@ const typeDefs = gql`
 
   type Query {
     books: [Book]
+    # bookByTitle(title: String): Book
   }
 `;
 
@@ -29,12 +30,10 @@ const resolvers = {
   Query: {
     books: () => {
       return books;
-      return new Promise(resolve =>
-        setTimeout(() => {
-          return resolve(books);
-        }, 2500)
-      );
     },
+    // bookByTitle: (_, args) => {
+    //   return books.find(book => book.title === args.title);
+    // },
   },
 };
 
