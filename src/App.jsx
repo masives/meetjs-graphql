@@ -13,7 +13,7 @@ const GET_BOOKS = gql`
     books {
       title
       author
-      # pagesCount
+      pagesCount
     }
   }
 `;
@@ -30,7 +30,7 @@ const BooksList = () => (
             <tr>
               <th>title</th>
               <th>author</th>
-              {/* <th>pagesCount</th> */}
+              <th>pagesCount</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +38,7 @@ const BooksList = () => (
               <tr key={book.title}>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
-                {/* <td>{book.pagesCount}</td> */}
+                <td>{book.pagesCount}</td>
               </tr>
             ))}
           </tbody>
