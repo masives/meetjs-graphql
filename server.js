@@ -18,6 +18,7 @@ const typeDefs = gql`
     title: String
     author: String
     pagesCount: Int
+    timeToRead: Int
   }
 
   type Query {
@@ -33,6 +34,11 @@ const resolvers = {
     },
     // bookByTitle: (_, args) => {
     //   return books.find(book => book.title === args.title);
+    // },
+  },
+  Book: {
+    // timeToRead: book => {
+    //   return book.pagesCount * 2;
     // },
   },
 };
