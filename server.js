@@ -62,7 +62,7 @@ const server = new ApolloServer({
   //       age: 15,
   //     },
   //   };
-  },
+  // },
 });
 
 server.listen().then(({ url }) => {
