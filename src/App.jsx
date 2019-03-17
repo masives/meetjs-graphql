@@ -14,14 +14,19 @@ const GET_BOOKS = gql`
       title
       author
       pagesCount
-      # timeToRead
+      timeToRead
     }
   }
 `;
 
 const BooksList = () => (
   <Query query={GET_BOOKS}>
-    {({ loading, error, data }) => {
+    {({
+      loading,
+      error,
+      data,
+      // refetch
+    }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
@@ -32,7 +37,7 @@ const BooksList = () => (
               <th>title</th>
               <th>author</th>
               <th>pagesCount</th>
-              {/* <th>timeToRead</th> */}
+              <th>timeToRead</th>
             </tr>
           </thead>
           <tbody>
@@ -41,9 +46,15 @@ const BooksList = () => (
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.pagesCount}</td>
-                {/* <td>{book.timeToRead}</td> */}
+                <td>{book.timeToRead}</td>
               </tr>
             ))}
+
+            {/* <tr>
+              <td>
+                <button onClick={() => refetch()}>refetch</button>
+              </td>
+            </tr> */}
           </tbody>
         </table>
       );
