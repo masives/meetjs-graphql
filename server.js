@@ -54,12 +54,15 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // context: () => ({
-  //   user: {
-  //     type: 'admin',
-  //     age: 15,
-  //   },
-  // }),
+  // context: req => {
+  //   console.log(req);
+  //   return {
+  //     user: {
+  //       type: 'admin',
+  //       age: 15,
+  //     },
+  //   };
+  },
 });
 
 server.listen().then(({ url }) => {
