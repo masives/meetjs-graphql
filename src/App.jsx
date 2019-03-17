@@ -13,13 +13,14 @@ const GET_BOOKS = gql`
     books {
       title
       author
+      # pagesCount
     }
   }
 `;
 
 const BooksList = () => (
   <Query query={GET_BOOKS}>
-    {({ loading, error, data, refetch }) => {
+    {({ loading, error, data }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
@@ -29,6 +30,7 @@ const BooksList = () => (
             <tr>
               <th>title</th>
               <th>author</th>
+              {/* <th>pagesCount</th> */}
             </tr>
           </thead>
           <tbody>
@@ -36,6 +38,7 @@ const BooksList = () => (
               <tr key={book.title}>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
+                {/* <td>{book.pagesCount}</td> */}
               </tr>
             ))}
           </tbody>

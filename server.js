@@ -27,7 +27,14 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    books: () => books,
+    books: () => {
+      return books;
+      // return new Promise(resolve =>
+      //   setTimeout(() => {
+      //     return resolve(books);
+      //   }, 2500)
+      // );
+    },
   },
 };
 
