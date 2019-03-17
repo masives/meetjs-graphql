@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider, Query } from 'react-apollo';
+import { ApolloProvider, Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const client = new ApolloClient({
@@ -57,11 +57,88 @@ const BooksList = () => (
   </Query>
 );
 
+const ADD_BOOK = gql`
+  mutation AddBook($newBook: newBook!) {
+    addBook(newBook: $newBook) {
+      title
+      author
+      pagesCount
+    }
+  }
+`;
+
+const AddBook = () => {
+  let title;
+  let author;
+  let pagesCount;
+
+  return (
+    <Mutation mutation={ADD_BOOK} onCompleted={data => alert('udało się ' + data.addBook.title)}>
+      {(addBook, { data, error }) => {
+        if (data) {
+          return <p>Dziękujemy za wpis</p>;
+        }
+        return (
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              addBook({
+                variables: {
+                  newBook: {
+                    title: title.value,
+                    author: author.value,
+                    pagesCount: parseInt(pagesCount.value, 10),
+                  },
+                },
+              });
+            }}
+          >
+            {error && <h2 style={{ color: 'red' }}> {error.toString()} </h2>}
+            <label htmlFor="title">
+              title
+              <input
+                id="title"
+                ref={node => {
+                  title = node;
+                }}
+              />
+            </label>
+            <br />
+            <label htmlFor="author">
+              author
+              <input
+                id="author"
+                ref={node => {
+                  author = node;
+                }}
+              />
+            </label>
+            <br />
+            <label htmlFor="pagesCount">
+              pagesCount
+              <input
+                id="pagesCount"
+                ref={node => {
+                  pagesCount = node;
+                }}
+              />
+            </label>
+            <br />
+            <input type="submit" value="submit " />
+          </form>
+        );
+      }}
+    </Mutation>
+  );
+};
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <ApolloProvider client={client}>
+          <AddBook />
+          <br />
           <BooksList />
         </ApolloProvider>
       </div>
