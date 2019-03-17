@@ -14,6 +14,7 @@ const GET_BOOKS = gql`
       title
       author
       pagesCount
+      # timeToRead
     }
   }
 `;
@@ -31,6 +32,7 @@ const BooksList = () => (
               <th>title</th>
               <th>author</th>
               <th>pagesCount</th>
+              {/* <th>timeToRead</th> */}
             </tr>
           </thead>
           <tbody>
@@ -39,6 +41,7 @@ const BooksList = () => (
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.pagesCount}</td>
+                {/* <td>{book.timeToRead}</td> */}
               </tr>
             ))}
           </tbody>
