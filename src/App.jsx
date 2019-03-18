@@ -19,7 +19,7 @@ const GET_BOOKS = gql`
 
 const BooksList = () => (
   <Query query={GET_BOOKS}>
-    {({ loading, error, data, refetch }) => {
+    {({ loading, error, data }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
