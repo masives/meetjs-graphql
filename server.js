@@ -18,7 +18,7 @@ const typeDefs = gql`
     title: String
     author: String
     pagesCount: Int
-    timeToRead: Int
+    # timeToRead: Int
   }
 
   type Query {
