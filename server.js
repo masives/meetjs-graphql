@@ -4,12 +4,12 @@ const books = [
   {
     title: 'Harry Potter and the Chamber of Secrets',
     author: 'J.K. Rowling',
-    // pagesCount: 12,
+    pagesCount: 12,
   },
   {
     title: 'Jurassic Park',
     author: 'Michael Crichton',
-    // pagesCount: 14,
+    pagesCount: 14,
   },
 ];
 
@@ -17,7 +17,7 @@ const typeDefs = gql`
   type Book {
     title: String
     author: String
-    # pagesCount: Int
+    pagesCount: Int
   }
 
   type Query {
